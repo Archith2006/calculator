@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f0ff">
+  <title>Infinity - Everyday calculations, beautifully clear</title>
+  <link rel="icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#basic" aria-label="Infinity home">
+        <img class="brand-mark" src="icon.png" alt="" aria-hidden="true">
+        <span>Infinity<span class="brand-period">.</span></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="primary-nav">
+        <button class="nav-item active" data-view="basic" aria-current="page"><span class="nav-icon">＋</span><span>Basic</span></button>
+        <button class="nav-item" data-view="scientific"><span class="nav-icon">π</span><span>Scientific</span></button>
+        <button class="nav-item" data-view="calculus"><span class="nav-icon">∫</span><span>Calculus</span></button>
+        <button class="nav-item" data-view="complex"><span class="nav-icon">ℂ</span><span>Complex</span></button>
+        <button class="nav-item" data-view="vectors"><span class="nav-icon">→</span><span>Vectors</span></button>
+        <button class="nav-item" data-view="bases"><span class="nav-icon">01</span><span>Binary/Octal/Hex</span></button>
+        <button class="nav-item" data-view="equations"><span class="nav-icon">xⁿ</span><span>Equations</span></button>
+        <button class="nav-item" data-view="matrix"><span class="nav-icon">▦</span><span>Matrix</span></button>
+        <button class="nav-item" data-view="converter"><span class="nav-icon">⇄</span><span>Converter</span></button>
+        <button class="nav-item" data-view="history"><span class="nav-icon">◷</span><span>History</span><span class="history-count" id="history-count">0</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="note-dot"></span><span>Made for the curious</span></div>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="page-title">Basic</strong></div>
+        <div class="topbar-right"><span class="today-label" id="today-label"></span><button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" title="Toggle dark mode"><span class="theme-icon">☾</span><span>Dark appearance</span><span class="toggle-track"><span></span></span></button><img class="avatar" src="icon.png" alt="Infinity logo"></div>
+      </header>
+
+      <div class="view-stage">
+        <section class="view active" id="view-basic" aria-label="Basic calculator">
+          <div class="calculator-wrap">
+            <div class="calculator-heading">
+              <div><span class="eyebrow">QUICK CALC</span><h1>Basic calculator</h1><p>Everyday math, without the mental clutter.</p></div>
+              <button class="mode-shortcut" data-switch-mode="scientific" aria-label="Switch to scientific calculator" title="Open scientific calculator">π<span class="shortcut-arrow">↗</span></button>
+            </div>
+            <div class="calc-card">
+              <div class="calc-display">
+                <div class="display-meta"><span class="mode-indicator"><i></i> BASIC</span><button class="angle-toggle" title="Toggle degrees or radians">DEG</button></div>
+                <div class="expression" id="basic-expression" aria-live="polite"></div>
+                <div class="result" id="basic-result" aria-live="polite">0</div>
+              </div>
+              <div class="keypad basic-keypad" id="basic-keypad">
+                <button class="key key-clear" data-action="clear">C</button><button class="key key-function" data-insert="(">(</button><button class="key key-function" data-insert=")">)</button><button class="key key-operator" data-insert="÷">÷</button>
+                <button class="key" data-insert="7">7</button><button class="key" data-insert="8">8</button><button class="key" data-insert="9">9</button><button class="key key-operator" data-insert="×">×</button>
+                <button class="key" data-insert="4">4</button><button class="key" data-insert="5">5</button><button class="key" data-insert="6">6</button><button class="key key-operator" data-insert="−">−</button>
+                <button class="key" data-insert="1">1</button><button class="key" data-insert="2">2</button><button class="key" data-insert="3">3</button><button class="key key-operator" data-insert="+">+</button>
+                <button class="key key-function" data-action="sign">±</button><button class="key" data-insert="0">0</button><button class="key" data-insert=".">.</button><button class="key key-equals" data-action="equals">=</button>
+              </div>
+              <div class="calc-foot"><span>⌨️ &nbsp;Keyboard ready</span><button data-action="backspace" aria-label="Delete last character" title="Backspace">⌫</button></div>
+            </div>
+            <div class="quick-hint"><span class="hint-sparkle">✳</span><span>Tip: press <kbd>Enter</kbd> to calculate and <kbd>Esc</kbd> to start fresh.</span></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-scientific" aria-label="Scientific calculator" hidden>
+          <div class="calculator-wrap">
+            <div class="calculator-heading">
+              <div><span class="eyebrow">DEEPER THINKING</span><h1>Scientific</h1><p>More room for the interesting questions.</p></div>
+              <button class="mode-shortcut" data-switch-mode="basic" aria-label="Switch to basic calculator" title="Open basic calculator">＋<span class="shortcut-arrow">↗</span></button>
+            </div>
+            <div class="calc-card scientific-card">
+              <div class="calc-display">
+                <div class="display-meta"><span class="mode-indicator"><i></i> SCIENTIFIC</span><button class="angle-toggle">DEG</button></div>
+                <div class="expression" id="scientific-expression" aria-live="polite"></div>
+                <div class="result" id="scientific-result" aria-live="polite">0</div>
+                <div class="fraction-detail" id="scientific-fraction-detail" aria-live="polite" hidden></div>
+              </div>
+              <div class="memory-row"><span class="memory-status" id="memory-status">MEMORY EMPTY</span><button class="fraction-toggle" data-action="fraction-toggle">F&lt;-&gt;D</button><button data-memory="clear">MC</button><button data-memory="recall">MR</button><button data-memory="add">M+</button><button data-memory="subtract">M−</button></div>
+              <div class="keypad scientific-keypad" id="scientific-keypad">
+                <button class="key key-function" data-insert="sin(">sin</button><button class="key key-function" data-insert="cos(">cos</button><button class="key key-function" data-insert="tan(">tan</button><button class="key key-function" data-insert="cosec(">cosec</button><button class="key key-function" data-insert="sec(">sec</button><button class="key key-function" data-insert="cot(">cot</button>
+                <button class="key key-function" data-insert="asin(">sin⁻¹</button><button class="key key-function" data-insert="acos(">cos⁻¹</button><button class="key key-function" data-insert="atan(">tan⁻¹</button><button class="key key-function" data-insert="acosec(">csc⁻¹</button><button class="key key-function" data-insert="asec(">sec⁻¹</button><button class="key key-function" data-insert="acot(">cot⁻¹</button>
+                <button class="key key-function" data-insert="sqrt(">√</button><button class="key key-function" data-insert="cbrt(">∛</button><button class="key key-function" data-insert="log10(">log</button><button class="key key-function" data-insert="log(">ln</button><button class="key key-function" data-insert="^2">x²</button><button class="key key-function" data-insert="^3">x³</button>
+                <button class="key key-function" data-insert="^(">xʸ</button><button class="key key-function" data-insert="!">n!</button><button class="key key-function" data-insert="pi">π</button><button class="key key-function" data-insert="e">e</button><button class="key key-clear" data-action="clear">C</button><button class="key key-function" data-action="backspace">⌫</button>
+                <button class="key" data-insert="7">7</button><button class="key" data-insert="8">8</button><button class="key" data-insert="9">9</button><button class="key key-operator" data-insert="÷">÷</button><button class="key" data-insert="(">(</button><button class="key" data-insert=")">)</button>
+                <button class="key" data-insert="4">4</button><button class="key" data-insert="5">5</button><button class="key" data-insert="6">6</button><button class="key key-operator" data-insert="×">×</button><button class="key" data-insert="%">%</button><button class="key" data-action="sign">±</button>
+                <button class="key" data-insert="1">1</button><button class="key" data-insert="2">2</button><button class="key" data-insert="3">3</button><button class="key key-operator" data-insert="−">−</button><button class="key key-function" data-insert="ans">Ans</button><button class="key key-operator" data-insert="+">+</button>
+                <button class="key" data-insert="0">0</button><button class="key" data-insert=".">.</button><button class="key" data-insert="^">^</button><button class="key key-function" data-insert=" nPr ">nPr</button><button class="key key-function" data-insert=" nCr ">nCr</button><button class="key key-equals scientific-equals" data-action="equals">=</button>
+              </div>
+              <div class="calc-foot"><span>Angles: <button class="inline-angle">degrees</button></span><button data-action="backspace" aria-label="Delete last character">⌫</button></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-calculus" aria-label="Calculus" hidden>
+          <div class="tool-view">
+            <div class="tool-heading"><span class="eyebrow">SYMBOLIC MATH</span><h1>Calculus, made tangible.</h1><p>Differentiate or integrate common expressions and see the result take shape.</p></div>
+            <div class="tool-panel calculus-panel">
+              <div class="field-label">EXPRESSION</div>
+              <div class="math-input-wrap"><span class="math-prefix">ƒ(x) =</span><input id="calculus-input" value="x^2 + 3x" aria-label="Calculus expression" autocomplete="off" spellcheck="false"></div>
+              <div class="calculus-options"><label for="calculus-operation">OPERATION</label><select id="calculus-operation"><option value="differentiate">Differentiate</option><option value="integrate">Integrate</option></select><label for="calculus-variable">WITH RESPECT TO</label><input id="calculus-variable" value="x" maxlength="1" aria-label="Variable"></div>
+              <button class="primary-button" id="calculus-submit">Calculate <span>→</span></button>
+              <div class="calculus-output" id="calculus-output" aria-live="polite"><span class="output-label">YOUR RESULT</span><strong>dy / dx = 2x + 3</strong><span class="output-note">A constant of integration (+ C) is included for integrals.</span></div>
+            </div>
+            <div class="scope-note"><span>i</span><p>Supports standard polynomial, trigonometric, exponential and logarithmic functions. Symbolic results are provided by Nerdamer.</p></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-complex" aria-label="Complex number calculator" hidden>
+          <div class="tool-view">
+            <div class="tool-heading"><span class="eyebrow">REAL + IMAGINARY</span><h1>Complex numbers.</h1><p>Work with values in a + bi form.</p></div>
+            <div class="tool-panel">
+              <label class="field-label" for="complex-a">FIRST NUMBER</label>
+              <input class="wide-input" id="complex-a" value="2 + 3i" autocomplete="off" spellcheck="false">
+              <label class="field-label" for="complex-operation">OPERATION</label>
+              <select class="wide-select" id="complex-operation"><option value="add">Add</option><option value="subtract">Subtract</option><option value="multiply">Multiply</option><option value="divide">Divide</option><option value="modulus">Modulus</option><option value="conjugate">Conjugate</option><option value="argument">Argument</option></select>
+              <label class="field-label" for="complex-b">SECOND NUMBER</label>
+              <input class="wide-input" id="complex-b" value="1 - 4i" autocomplete="off" spellcheck="false">
+              <button class="primary-button" id="complex-submit">Calculate <span>→</span></button>
+              <div class="calculus-output" id="complex-output" aria-live="polite"><span class="output-label">RESULT</span><strong>3 − i</strong><span class="output-note">Arguments are reported in radians.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-vectors" aria-label="Vector calculator" hidden>
+          <div class="tool-view">
+            <div class="tool-heading"><span class="eyebrow">DIRECTION + MAGNITUDE</span><h1>Vectors in motion.</h1><p>Calculate with two- or three-dimensional vectors.</p></div>
+            <div class="tool-panel">
+              <label class="field-label" for="vector-dimension">DIMENSION</label>
+              <select class="wide-select" id="vector-dimension"><option value="2">2D</option><option value="3">3D</option></select>
+              <label class="field-label" for="vector-a">VECTOR A · COMMA-SEPARATED</label>
+              <input class="wide-input" id="vector-a" value="2, 3">
+              <label class="field-label" for="vector-b">VECTOR B · COMMA-SEPARATED</label>
+              <input class="wide-input" id="vector-b" value="4, 1">
+              <label class="field-label" for="vector-operation">OPERATION</label>
+              <select class="wide-select" id="vector-operation"><option value="add">Addition</option><option value="subtract">Subtraction</option><option value="dot">Dot product</option><option value="cross">Cross product (3D)</option><option value="magnitude">Magnitude of A</option><option value="normalize">Normalize A</option></select>
+              <button class="primary-button" id="vector-submit">Calculate <span>→</span></button>
+              <div class="calculus-output" id="vector-output" aria-live="polite"><span class="output-label">RESULT</span><strong>(6, 4)</strong><span class="output-note"></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-bases" aria-label="Number base converter" hidden>
+          <div class="tool-view">
+            <div class="tool-heading"><span class="eyebrow">SAME VALUE, NEW BASE</span><h1>Number base converter.</h1><p>See binary, octal, decimal, and hexadecimal together.</p></div>
+            <div class="tool-panel">
+              <label class="field-label" for="base-input">VALUE</label>
+              <input class="wide-input" id="base-input" value="42" autocomplete="off" spellcheck="false">
+              <label class="field-label" for="base-from">FROM BASE</label>
+              <select class="wide-select" id="base-from"><option value="2">Binary</option><option value="8">Octal</option><option value="10" selected>Decimal</option><option value="16">Hexadecimal</option></select>
+              <div class="base-results" id="base-results" aria-live="polite">
+                <div class="base-result"><span>Binary</span><output id="base-2">101010</output></div>
+                <div class="base-result"><span>Octal</span><output id="base-8">52</output></div>
+                <div class="base-result"><span>Decimal</span><output id="base-10">42</output></div>
+                <div class="base-result"><span>Hexadecimal</span><output id="base-16">2A</output></div>
+              </div>
+              <button class="primary-button" id="base-save">Save conversion <span>→</span></button>
+              <div class="field-feedback" id="base-feedback" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-equations" aria-label="Polynomial equation solver" hidden>
+          <div class="tool-view">
+            <div class="tool-heading"><span class="eyebrow">FIND THE ROOTS</span><h1>Polynomial solver.</h1><p>Enter polynomial terms in any order, such as x^3 − 2x + 1.</p></div>
+            <div class="tool-panel">
+              <label class="field-label" for="equation-input">POLYNOMIAL</label>
+              <input class="wide-input" id="equation-input" value="x^3 - 2x + 1" autocomplete="off" spellcheck="false">
+              <button class="primary-button" id="equation-submit">Solve equation <span>→</span></button>
+              <div class="calculus-output" id="equation-output" aria-live="polite"><span class="output-label">ROOTS</span><strong>Ready to solve</strong><span class="output-note">Linear, quadratic, and cubic roots use closed-form formulas; higher degrees use Durand–Kerner iteration.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-matrix" aria-label="Matrix calculator" hidden>
+          <div class="tool-view matrix-view">
+            <div class="tool-heading"><span class="eyebrow">ROWS × COLUMNS</span><h1>Matrix calculator.</h1><p>Build matrices, then operate on the dimensions you need.</p></div>
+            <div class="tool-panel">
+              <div class="matrix-dimensions"><label>A ROWS <input id="matrix-rows" type="number" min="1" value="2"></label><label>A COLS <input id="matrix-columns" type="number" min="1" value="2"></label><label>B ROWS <input id="matrix-b-rows" type="number" min="1" value="2"></label><label>B COLS <input id="matrix-b-columns" type="number" min="1" value="2"></label><button class="secondary-button" id="matrix-build">Build grids</button></div>
+              <div class="matrix-grids"><div><span class="field-label">MATRIX A</span><div class="matrix-grid" id="matrix-a"></div></div><div><span class="field-label">MATRIX B</span><div class="matrix-grid" id="matrix-b"></div></div></div>
+              <label class="field-label" for="matrix-operation">OPERATION</label>
+              <select class="wide-select" id="matrix-operation"><option value="add">Addition</option><option value="subtract">Subtraction</option><option value="multiply">Multiplication</option><option value="transpose">Transpose A</option><option value="determinant">Determinant of A</option><option value="inverse">Inverse of A</option><option value="rank">Rank of A</option></select>
+              <button class="primary-button" id="matrix-submit">Calculate <span>→</span></button>
+              <div class="calculus-output" id="matrix-output" aria-live="polite"><span class="output-label">RESULT</span><strong>Enter matrix values to begin.</strong><span class="output-note"></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-converter" aria-label="Unit converter" hidden>
+          <div class="tool-view">
+            <div class="tool-heading"><span class="eyebrow">MAKE IT COMPARABLE</span><h1>Convert with confidence.</h1><p>Quick, clear conversions for wherever the day takes you.</p></div>
+            <div class="tool-panel converter-panel">
+              <label class="field-label" for="category-select">CONVERSION TYPE</label>
+              <select id="category-select" class="wide-select"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option><option value="speed">Speed</option><option value="currency">Currency</option></select>
+              <div class="conversion-fields">
+                <label class="conversion-box"><span>FROM</span><input id="convert-input" type="number" value="1" step="any" aria-label="Value to convert"><select id="from-unit" aria-label="Convert from unit"></select></label>
+                <button class="swap-button" id="swap-units" aria-label="Swap units" title="Swap units">⇄</button>
+                <label class="conversion-box"><span>TO</span><output id="convert-result">0.3048</output><select id="to-unit" aria-label="Convert to unit"></select></label>
+              </div>
+              <div class="conversion-summary" id="conversion-summary">1 foot = 0.3048 meters</div>
+              <div class="rate-note" id="rate-note" hidden>Currency rates are static reference values, not live market rates.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-history" aria-label="Calculation history" hidden>
+          <div class="tool-view history-view">
+            <div class="history-heading"><div class="tool-heading"><span class="eyebrow">YOUR RECENT WORK</span><h1>History, at a glance.</h1><p>Your calculations stay here, ready when you need them.</p></div><button class="text-button" id="clear-history">Clear history</button></div>
+            <div class="history-list" id="history-list"></div>
+            <div class="empty-history" id="empty-history"><span class="empty-orbit">∑</span><h2>A little space for what’s next.</h2><p>Completed calculations will appear here automatically.</p><button class="secondary-button" data-switch-mode="basic">Start calculating <span>→</span></button></div>
+          </div>
+        </section>
+      </div>
+      <footer class="workspace-footer"><span>INFINITY CALCULATOR</span><span>Thoughtfully precise <span class="footer-star">✳</span></span></footer>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.0.1/math.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/nerdamer@1.1.13/all.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
