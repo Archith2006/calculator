@@ -610,6 +610,10 @@ $('.inline-angle').textContent = state.angleMode === 'deg' ? 'degrees' : 'radian
 renderHistory();
 setupConverter();
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(() => {}));
+}
+
 function showToolResult(id, title, detail = '') {
   const output = $(`#${id}`);
   output.querySelector('strong').textContent = title;
